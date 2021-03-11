@@ -1,4 +1,5 @@
 set nocompatible
+filetype off
 
 call plug#begin('~/.config/nvim/vim-plugs')
   " Color Schemes
@@ -6,35 +7,46 @@ call plug#begin('~/.config/nvim/vim-plugs')
   Plug 'embark-theme/vim', { 'as': 'embark' }
   Plug 'morhetz/gruvbox'
   " Utilities
+  Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'ludovicchabant/vim-gutentags' "havent got this to work just yet.
   Plug 'vim-syntastic/syntastic'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  " Plug '/usr/local/opt/fzf'  " fzf = fuzzy finder; used for matching file names
-  Plug 'dense-analysis/ale' " lint runner
+  " Plug 'dense-analysis/ale' "lint runner; superseded by coc (see below)
   " Javascript-family
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  Plug 'HerringtonDarkholme/yats.vim' " reqd for nvim-typescript
+  Plug 'HerringtonDarkholme/yats.vim' "reqd for nvim-typescript
   Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}  " for generic TLS-server languages
   " Rust
   Plug 'rust-lang/rust.vim'
   Plug 'racer-rust/vim-racer'
 call plug#end()
+filetype plugin indent on
+
+" leader key is the one in normal mode that enables things like window switch.
+" Normally the leader key is ctrl.
+" let mapleader = ' '
 
 " standard stuff
 colorscheme afterglow 
 syntax enable
-filetype plugin indent on
 set encoding=utf-8
 set fileencoding=utf-8
+set background=dark
 
 " This if-block is useful on Mac, but looks bad with Arch+urxvt+i3wm
 if (has('termguicolors'))
   set termguicolors
 endif
 
+" editor terrain
 set relativenumber
 set nowrap
 set colorcolumn=120
+set ruler
+set nohlsearch " Don't highlight search term
+set lazyredraw
+set updatetime=300 "affects coc context pop-ups
 
 " tab trickery
 set autoindent
