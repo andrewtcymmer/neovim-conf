@@ -2,24 +2,23 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.config/nvim/vim-plugs')
-  " Color Schemes
+  " === Color Schemes ===
   Plug 'danilo-augusto/vim-afterglow'
   Plug 'embark-theme/vim', { 'as': 'embark' }
   Plug 'morhetz/gruvbox'
-  " Utilities
+  " === Utilities ===
   Plug 'ctrlpvim/ctrlp.vim'
   " Plug 'ludovicchabant/vim-gutentags' "havent got this to work just yet.
   Plug 'vim-syntastic/syntastic'
   " Plug 'dense-analysis/ale' "lint runner; superseded by coc (see below)
-  " Javascript-family
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-  Plug 'HerringtonDarkholme/yats.vim' "reqd for nvim-typescript
+  " === Javascript-family ===
+  Plug 'pangloss/vim-javascript'      " JavaScript support
+  Plug 'mxw/vim-jsx'                  " Make JSX look good
+  Plug 'HerringtonDarkholme/yats.vim' " reqd for nvim-typescript plug below
   Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}  " for generic TLS-server languages
-  " Rust
-  Plug 'rust-lang/rust.vim'
-  Plug 'racer-rust/vim-racer'
+  " === Rust ===
+  " Plug 'rust-lang/rust.vim'
+  " Plug 'racer-rust/vim-racer'
 call plug#end()
 filetype plugin indent on
 
@@ -54,6 +53,13 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+
+" keymaps
+" Type ':vb 2' instead of ':vsp | b2'
+cabbrev vb vert sb
+
+" Delete empty space from the end of lines on every save
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Create this file on your local machine (it is ignored in the repo).
 " Put the paths to your python/ruby/node global installs there.
