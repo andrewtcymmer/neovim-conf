@@ -1,21 +1,23 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.config/nvim/vim-plugs')
+call plug#begin(stdpath('data') . '/plugged')
   " === Color Schemes ===
   Plug 'danilo-augusto/vim-afterglow'
   Plug 'embark-theme/vim', { 'as': 'embark' }
   Plug 'morhetz/gruvbox'
   " === Utilities ===
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  " Plug 'ludovicchabant/vim-gutentags'
   " Plug 'ludovicchabant/vim-gutentags' "havent got this to work just yet.
-  Plug 'vim-syntastic/syntastic'
-  " Plug 'dense-analysis/ale' "lint runner; superseded by coc (see below)
+  " Plug 'vim-syntastic/syntastic'
   " === Javascript-family ===
-  Plug 'pangloss/vim-javascript'      " JavaScript support
-  Plug 'mxw/vim-jsx'                  " Make JSX look good
-  Plug 'HerringtonDarkholme/yats.vim' " reqd for nvim-typescript plug below
-  Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+  " Plug 'pangloss/vim-javascript'      " JavaScript support
+  " Plug 'mxw/vim-jsx'                  " Make JSX look good
+  " Plug 'HerringtonDarkholme/yats.vim' " reqd for nvim-typescript plug below
+  " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
   " === Rust ===
   " Plug 'rust-lang/rust.vim'
   " Plug 'racer-rust/vim-racer'
@@ -27,7 +29,7 @@ filetype plugin indent on
 " let mapleader = ' '
 
 " standard stuff
-colorscheme afterglow 
+colorscheme afterglow
 syntax enable
 set encoding=utf-8
 set fileencoding=utf-8
@@ -69,4 +71,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Example lines to put in there:
 " let g:python3_host_prog='/usr/local/Cellar/python@3.9/3.9.0_1/bin'
 source $HOME/.config/nvim/local.vim
+
+" LSP setup for TypeScript (!)
+lua << EOF
+require'lspconfig'.tsserver.setup{}
+EOF
 
