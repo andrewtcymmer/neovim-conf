@@ -28,14 +28,16 @@ opt.shiftwidth = 2 -- Size of an indent
 opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- default color scheme
+-- everforest guibg: 2f383e
+-- shadorain guibg: 09090d
 vim.api.nvim_command([[
   augroup ChangeBackgroundColor
-    autocmd colorscheme * :hi normal guibg=#2f383e
+    autocmd colorscheme * :hi normal guibg=#09090d
   augroup END
 ]])
 opt.termguicolors = true
 opt.background = 'dark'
-vim.cmd [[silent! colorscheme everforest]]
+vim.cmd [[silent! colorscheme xshado]]  -- shadorain scheme name: xshado
 
 -- typescript: find a better place for this
 require'lspconfig'.tsserver.setup{}

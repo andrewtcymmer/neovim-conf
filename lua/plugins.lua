@@ -5,7 +5,8 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'sainnhe/everforest'
-  use 'sainnhe/gruvbox-material'
+  use 'sainnhe/everforest' -- compatible with treesitter
+  use 'sainnhe/gruvbox-material' -- compatible with treesitter
+  use 'Shadorain/shadotheme' -- alias is 'xshado'; not known to be compatible with treesitter
 end)
 
