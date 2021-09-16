@@ -28,15 +28,15 @@ vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- default color scheme
 -- everforest guibg: 2f383e
--- shadorain guibg: 09090d
+-- shadorain (name: xshado) guibg: 09090d
 vim.api.nvim_command([[
   augroup ChangeBackgroundColor
-    autocmd colorscheme * :hi normal guibg=#09090d
+    autocmd colorscheme * :hi normal guibg=#2f383e
   augroup END
 ]])
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
-vim.cmd [[silent! colorscheme xshado]]
+vim.cmd [[silent! colorscheme everforest]]
 
 -- typescript: find a better place for this
 require'lspconfig'.tsserver.setup{}
