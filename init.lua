@@ -38,9 +38,6 @@ vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.cmd [[silent! colorscheme everforest]]
 
--- typescript: find a better place for this
-require'lspconfig'.tsserver.setup{}
-
 -- autocompletion
 local cmp = require'cmp'
 cmp.setup({
@@ -63,10 +60,16 @@ cmp.setup({
     })
   },
   sources = {
-    { name = '...' },
-    { name = 'buffer' }
+    { name = 'vsnip' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp' }
   }
 })
+
+-- typescript: find a better place for this
+require'lspconfig'.tsserver.setup {
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
 
 -- research these and enable later
 
