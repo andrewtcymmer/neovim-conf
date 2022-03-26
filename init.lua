@@ -1,17 +1,6 @@
 require('atcym.plugins')
 require('atcym.editor')
-
--- default color scheme
--- everforest guibg: 2f383e
--- shadorain (name: xshado) guibg: 09090d
-vim.api.nvim_command([[
-  augroup ChangeBackgroundColor
-    autocmd colorscheme * :hi normal guibg=#2f383e
-  augroup END
-]])
-vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-vim.cmd [[silent! colorscheme everforest]]
+require('atcym.colors')
 
 -- autocompletion
 local cmp = require'cmp'

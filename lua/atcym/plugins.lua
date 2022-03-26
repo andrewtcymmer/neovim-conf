@@ -19,8 +19,7 @@ return require('packer').startup({
       }
     })
     -- colors
-    use({ 'sainnhe/everforest' }) -- compatible with treesitter
-    use({ 'sainnhe/gruvbox-material' }) -- compatible with treesitter
+    use({ 'andersevenrud/nordic.nvim' })
   end,
 
   config = {}
