@@ -1,6 +1,8 @@
 require('atcym.plugins')
 require('atcym.editor')
+require('atcym.lspconfig')
 require('atcym.colors')
+require('atcym.autocommands')
 
 -- autocompletion
 local cmp = require'cmp'
