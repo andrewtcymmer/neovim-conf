@@ -4,3 +4,4 @@ local on_attach = function(client, bufnr)
 end
 
 require('atcym.lspconfig.terraform').setup(on_attach)
+require('atcym.lspconfig.typescript').setup(on_attach)
