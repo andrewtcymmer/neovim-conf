@@ -3,6 +3,11 @@ return require('packer').startup({
     -- Packer can manage itself
     use({ 'wbthomason/packer.nvim' })
     use({ 'neovim/nvim-lspconfig' })
+    use({
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      config = [[require('atcym.plugins.nvim-treesitter')]],
+    })
     -- Install nvim-cmp, and buffer source as a dependency
     use({ 'hrsh7th/vim-vsnip' })
     use({ 'hrsh7th/cmp-buffer' })
