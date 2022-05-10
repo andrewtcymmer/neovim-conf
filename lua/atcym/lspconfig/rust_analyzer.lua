@@ -1,19 +1,51 @@
 local Module = {}
 
--- these ought to be assigned directly to LSPServer settings property
-Module.settings = {
-  ["rust-analyzer"] = {
-    assist = {
-      importGranularity = "module",
-      importPrefix = "by_self",
+Module.makeLspSetupOptions = function(on_attach)
+  local caps = vim.lsp.protocol.make_client_capabilities()
+  caps.textDocument.completion.completionItem.snippetSupport = true
+
+  return {
+    capabilities = caps,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150
     },
-    cargo = {
-      loadOutDirsFromCheck = true,
+    tools = {
+      autoSetHints = true,
+      hover_with_actions = true,
+      inlay_hints = {
+        show_parameter_hints = false,
+        parameter_hints_prefix = "",
+        other_hints_prefix = "",
+      }
     },
-    procMacro = {
-      enable = true,
+    server = {
+      settings = {
+        ["rust-analyzer"] = {
+          assist = {
+            importGranularity = "module",
+            importMergeBehavior = "last",
+            importPrefix = "by_self",
+          },
+          cargo = {
+            loadOutDirsFromCheck = true,
+          },
+          diagnostics = {
+            disabled = { 
+              "unresolved-import"
+            }
+          },
+          procMacro = {
+            enable = true,
+          },
+          checkOnSave = {
+            command = "clippy"
+          }
+        }
+      }
     }
   }
-}
+end
+
 
 return Module

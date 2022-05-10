@@ -1,29 +1,28 @@
-return require('packer').startup({
-  function(use)
-    -- Packer can manage itself
-    use({ 'wbthomason/packer.nvim' })
-    use({ 'neovim/nvim-lspconfig' })
-    use({
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-      config = [[require('atcym.plugins.nvim-treesitter')]],
+-- autocompletion
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
     })
-    -- Install nvim-cmp, and buffer source as a dependency
-    use({ 'hrsh7th/vim-vsnip' })
-    use({ 'hrsh7th/cmp-buffer' })
-    use({ 'hrsh7th/cmp-nvim-lsp' })
-    use({
-      'hrsh7th/nvim-cmp',
-      requires = {
-        'hrsh7th/vim-vsnip',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-nvim-lsp',
-      }
-    })
-    -- colors
-    use({ 'andersevenrud/nordic.nvim' })
-  end,
-
-  config = {}
+  },
+  sources = {
+    { name = 'vsnip' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp' }
+  }
 })
 
