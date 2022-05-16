@@ -1,3 +1,6 @@
+-- This file is imported as the config to run in packer.lua when the tree-sittern plugin is loaded.
+-- Do not import it in this module, as it would then be imported twice.
+
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = { "lua", "rust", "typescript" },

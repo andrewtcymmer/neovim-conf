@@ -28,18 +28,16 @@ return require('packer').startup(
       run = ':TSUpdate',
       config = [[require('atcym.plugins.nvim-treesitter')]],
     } 
-    -- Install nvim-cmp, and buffer source as a dependency
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/cmp-buffer'
+
+    -- autocompletion
     use 'hrsh7th/cmp-nvim-lsp'
-    use {
-      'hrsh7th/nvim-cmp',
-      requires = {
-        'hrsh7th/vim-vsnip',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-nvim-lsp',
-      } 
-    } 
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/nvim-cmp'
+
+    -- snippets (autocompletion requires these)
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
+
     -- colors
     use 'andersevenrud/nordic.nvim'
 
