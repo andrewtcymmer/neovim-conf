@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap(bufnr, 'n', ' ca', '', {callback=vim.lsp.buf.code_action, silent=true, noremap=true})
 end
 
-local servers = { "rust_analyzer", "tsserver", "terraformls" }
+local servers = { "rust_analyzer", "tsserver", "terraformls", "texlab" }
 for _,lsp in pairs(servers) do
   require'lspconfig'[lsp].setup(
     require('atcym.lspconfig.' .. lsp).makeLspSetupOptions(on_attach)

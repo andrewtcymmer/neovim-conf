@@ -4,7 +4,7 @@
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   -- hcl is terraform
-  ensure_installed = { "lua", "rust", "typescript", "hcl" },
+  ensure_installed = { "lua", "rust", "typescript", "hcl", "latex" },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
