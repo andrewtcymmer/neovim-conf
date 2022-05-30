@@ -9,3 +9,19 @@ From an install with no plugins (including packer) do this:
 1. `nvim` to open yet again. You will see an error about tree-sitter. However, tree-sitter updates itself after this error, which will make it go away on next open.
 1. `nvim` is now ready to rip!
 
+# LSP Support Extras
+You need to install language servers manually for these types of files.  
+
+## LaTeX
+
+    wget https://github.com/latex-lsp/texlab/releases
+    tar -xvzf texlab-x86_64-linux.tar.gz
+    mv texlab ~/.local/bin/
+
+## Terraform
+
+    # wget of terraformls binary
+    # untar/unzip
+    mv terraformls ~/.local/bin/
+
+
