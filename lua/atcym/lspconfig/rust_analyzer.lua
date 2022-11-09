@@ -2,7 +2,7 @@ local Module = {}
 
 Module.makeLspSetupOptions = function(on_attach)
   local caps = vim.lsp.protocol.make_client_capabilities()
-  caps = require('cmp_nvim_lsp').update_capabilities(caps) -- enable language server completion
+  caps = require('cmp_nvim_lsp').default_capabilities(caps) -- enable language server completion
   -- TODO: require'cmp-nvim'.extend_capabilities(caps) to add autocompletion for rust, in addition to LSP?
   caps.textDocument.completion.completionItem.snippetSupport = true
 
