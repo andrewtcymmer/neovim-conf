@@ -19,9 +19,6 @@ You need to install language servers manually for these types of files.
     mv texlab ~/.local/bin/
 
 ## Terraform
-
-    # wget of terraformls binary
-    # untar/unzip
-    mv terraformls ~/.local/bin/
-
-
+Get the language server latest release ([instructions](https://github.com/hashicorp/terraform-ls/blob/main/docs/installation.md#other-platforms)), then simply copy it to a local executable directory in your `$PATH`.  
+- Mac: `~/Applications` (assuming `$HOME/Applications` is in the `$PATH`).
+- Linux: `~/local` or equivalent
