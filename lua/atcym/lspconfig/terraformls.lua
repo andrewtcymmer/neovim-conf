@@ -16,7 +16,7 @@ Module.makeLspSetupOptions = function(on_attach)
     -- The following are defaults according to the docs. Added so as not to overwrite with empty values.
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#terraformls
     cmd = { "terraform-ls", "serve" },
-    filetypes = { "terraform" },
+    filetypes = { "terraform", "terraform-vars" },
     root_dir = root_pattern(".terraform") -- , ".git" omitted since I work primarily in monorepos
   }
 end
