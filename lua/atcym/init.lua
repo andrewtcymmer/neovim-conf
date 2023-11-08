@@ -1,3 +1,5 @@
+vim.lsp.set_log_level("off") -- set to "debug" when debugging
+
 require 'atcym.packer'
 require 'atcym.colors'
 require 'atcym.editor'
