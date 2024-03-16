@@ -46,6 +46,8 @@ return require('packer').startup(
 
     -- colors
     use 'andersevenrud/nordic.nvim'
+    use 'wittyjudge/gruvbox-material.nvim'
+    use 'neanias/everforest-nvim'
 
     -- update packer
     if PACKER_BOOTSTRAP then
