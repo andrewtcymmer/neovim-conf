@@ -29,12 +29,6 @@ return require('packer').startup(
       config = [[require('atcym.plugins.nvim-treesitter')]],
     } 
 
-    -- special for latex
-    use {
-      'jakewvincent/texmagic.nvim',
-      config = [[require('atcym.plugins.texmagic')]]
-    }
-
     -- autocompletion
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
