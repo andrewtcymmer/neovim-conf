@@ -1,42 +1,39 @@
--- This file is imported as the config to run in packer.lua when the tree-sittern plugin is loaded.
--- Do not import it in this module, as it would then be imported twice.
-
-require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- hcl is terraform
-  ensure_installed = { "lua", "rust", "typescript", "hcl", "latex" },
-
-  -- Install languages synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- List of parsers to ignore installing
-  -- ignore_install = { "javascript" },
-
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
-  },
-  textobjects = {
-    lsp_interop = {
-      enable = true,
-      border = 'none',
---      peek_definition_code = {
---        ['gnf'] = '@function.outer',
---        ['gnc'] = '@class.outer',
---      },
+return {
+  "nvim-treesitter/nvim-treesitter",
+  -- tag = "v0.9.2",
+  build = ":TSUpdate",
+  dependencies = {
+    { "nvim-treesitter/nvim-treesitter-textobjects" }, -- Syntax aware text-objects
+    {
+      "nvim-treesitter/nvim-treesitter-context", -- Show code context
+      opts = {enable = true, mode = "topline", line_numbers = true}
     }
-  }
-}
+  },
+  config = function()
+    local treesitter = require'nvim-treesitter.configs'
 
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "markdown" },
+      callback = function(ev)
+        -- treesitter-context is buggy with Markdown files
+        require'treesitter-context'.disable()
+      end
+    })
+
+    treesitter.setup({
+      ensure_installed = {
+        "csv", "dockerfile", "gitignore", "go", "gomod", "gosum",
+        "gowork", "hcl", "javascript", "json", "lua", "markdown", "proto",
+        "python", "rego", "sql", "typescript", "yaml"
+      },
+      indent = {enable = true},
+      auto_install = true,
+      sync_install = false,
+      highlight = {
+        enable = true,
+        disable = {"csv"} -- preferring chrisbra/csv.vim
+      },
+      textobjects = {select = {enable = true, lookahead = true}}
+    })
+  end
+}

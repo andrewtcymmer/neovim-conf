@@ -1,1 +1,1 @@
-require('atcym')
+require'atcym'
