@@ -14,7 +14,6 @@ return {
 
 	{
 		"neanias/everforest-nvim",
-		version = false,
 		priority = 1000,
 		version = false,
 		config = function()
